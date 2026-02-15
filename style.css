@@ -8,19 +8,56 @@ body {
     min-height: 100vh;
     margin: 0;
 }
-.container { text-align: center; width: 90%; max-width: 650px; }
-#clock { font-size: 4.5rem; font-weight: 700; margin-bottom: 2rem; }
+
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 650px;
+}
+
+#clock {
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
 .speed-meter-container {
-    position: fixed; top: 20px; right: 20px; background: #1a1a1a;
-    padding: 15px; border-radius: 20px; border: 1px solid #333;
-    display: flex; flex-direction: column; align-items: center; width: 120px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 20px;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px;
 }
-#speed-gauge { width: 100px; height: 100px; }
-#speed-text { font-size: 1rem; color: #00adb5; font-weight: bold; margin-top: -10px; }
+
+#speed-gauge {
+    width: 100px;
+    height: 100px;
+}
+
+#speed-text {
+    font-size: 1rem;
+    color: #00adb5;
+    font-weight: bold;
+    margin-top: -10px;
+}
+
 #retest-btn {
-    background: #252525; border: none; color: #888; font-size: 0.7rem;
-    padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-top: 8px;
+    background: #252525;
+    border: none;
+    color: #888;
+    font-size: 0.7rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 8px;
 }
+
 .search-section {
     display: flex;
     flex-direction: column;
@@ -31,9 +68,25 @@ body {
 
 .search-group {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: 8px;
 }
+
+/* 3. The Hover Effect (Moves the whole button up) */
+    .search-group label:hover {
+        transform: translateY(-4px); /* Lift effect */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
+        border-color: #00adb5;
+        /* //background-color: #f8fbff; */
+    }
+
+    /* 4. Click Effect */
+    .search-group label:active {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
 
 .search-group span {
     font-size: 0.7rem;
@@ -43,7 +96,9 @@ body {
     margin-right: 5px;
 }
 
-.search-group input { display: none; }
+.search-group input {
+    display: none;
+}
 
 .search-group label {
     padding: 6px 14px;
@@ -55,30 +110,74 @@ body {
     transition: 0.2s;
 }
 
-/* AI labels have a slight glow to distinguish them */
-#gpt + label:hover, #claude + label:hover, #perplexity + label:hover {
-    border-color: #a29bfe;
-}
-
-.search-group input:checked + label {
+.search-group input:checked+label {
     background: #00adb5;
     color: #000;
     border-color: #00adb5;
 }
+
 #search-input {
-    width: 100%; padding: 18px 25px; border-radius: 35px; border: 1px solid #333;
-    background: #1a1a1a; color: white; font-size: 1.1rem; outline: none; box-sizing: border-box;
+    width: 100%;
+    padding: 18px 25px;
+    border-radius: 35px;
+    border: 1px solid #333;
+    background: #1a1a1a;
+    color: white;
+    font-size: 1.1rem;
+    outline: none;
+    box-sizing: border-box;
 }
-.bookmarks { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
+
+.bookmarks {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+}
+
 .card {
-    padding: 15px; background: #1a1a1a; border-radius: 12px; text-decoration: none;
-    color: #ccc; border: 1px solid transparent; transition: 0.2s;
+    padding: 15px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #ccc;
+    border: 1px solid transparent;
+    transition: 0.2s;
 }
-.card:hover { border-color: #00adb5; color: #00adb5; }
-.log-container { margin-top: 2rem; position: relative; }
+
+.card:hover {
+    border-color: #00adb5;
+    color: #00adb5;
+}
+
+.log-container {
+    margin-top: 2rem;
+    position: relative;
+}
+
 #daily-log {
-    width: 100%; height: 100px; background: #1a1a1a; color: #bbb; border: 1px solid #333;
-    border-radius: 12px; padding: 12px; resize: none; outline: none; font-family: inherit; box-sizing: border-box;
+    width: 100%;
+    height: 100px;
+    background: #1a1a1a;
+    color: #bbb;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 12px;
+    resize: none;
+    outline: none;
+    font-family: inherit;
+    box-sizing: border-box;
 }
-#save-status { position: absolute; bottom: 10px; right: 15px; font-size: 0.7rem; color: #00adb5; opacity: 0; }
-#save-status.show { opacity: 1; }
+
+#save-status {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    font-size: 0.7rem;
+    color: #00adb5;
+    opacity: 0;
+}
+
+#save-status.show {
+    opacity: 1;
+}
