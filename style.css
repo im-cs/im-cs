@@ -119,13 +119,20 @@ body {
 #search-input {
     width: 100%;
     padding: 18px 25px;
-    border-radius: 35px;
+    border-radius: 25px; /* Reduced slightly for better textarea aesthetics */
     border: 1px solid #333;
     background: #1a1a1a;
     color: white;
     font-size: 1.1rem;
     outline: none;
     box-sizing: border-box;
+    
+    /* Specific Textarea Fixes */
+    resize: none;          /* Prevents user from dragging the corner */
+    display: block;        /* Removes bottom whitespace padding */
+    line-height: 1.5;      /* Better readability for multi-line text */
+    overflow: hidden;      /* Hides scrollbars if you want a clean look */
+    font-family: inherit;  /* Textareas often default to monospace */
 }
 
 .bookmarks {

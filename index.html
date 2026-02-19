@@ -26,29 +26,23 @@
                 <label for="ddg">DuckDuckGo</label>
                 <input type="radio" id="cppref" name="engine" value="https://duckduckgo.com/?sites=cppreference.com&q=">
                 <label for="cppref">C++ ref</label>
-                <input type="radio" id="google" name="engine" value="https://www.google.com/search?q=">
+                <input type="radio" id="google" name="engine" value="https://www.google.com/search?udm=14&q=">
                 <label for="google">Google</label>
             </div>
 
             <div class="search-group">
                 <span>AI:</span>
-                <input type="radio" id="gpt" name="engine" value="https://chatgpt.com/?q=">
-                <label for="gpt">ChatGPT</label>
+                <input type="radio" id="gemini" name="engine" value="https://www.google.com/search?udm=50&q=">
+                <label for="gemini">Gemini</label>
 
                 <input type="radio" id="claude" name="engine" value="https://claude.ai/new?q=">
                 <label for="claude">Claude</label>
-
-                <input type="radio" id="perplexity" name="engine" value="https://www.perplexity.ai/search?q=">
-                <label for="perplexity">Perplexity</label>
 
                 <input type="radio" id="grok" name="engine" value="https://grok.com/?q=">
                 <label for="grok">Grok</label>
 
                 <input type="radio" id="gemini" name="engine" value="https://gemini.google.com/app?q=">
                 <label for="gemini">Gemini</label>
-
-                <input type="radio" id="ddg-ai" name="engine" value="https://duckduckgo.com/?q=">
-                <label for="ddg-ai">DDG AI</label>
 
                 <input type="radio" id="huggingface" name="engine" value="https://huggingface.co/chat/?q=">
                 <label for="huggingface">HuggingChat</label>
@@ -62,7 +56,7 @@
         </div>
 
         <form action="https://www.google.com/search" method="get" id="search-form">
-            <input type="text" name="q" id="search-input" placeholder="Search the web..." autofocus autocomplete="off">
+            <textarea name="q" id="search-input" placeholder="Search the web..." autofocus></textarea>
         </form>
 
         <div id="bookmarks-list" class="bookmarks"></div>

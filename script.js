@@ -30,15 +30,12 @@ loadBookmarks();
 const searchForm = document.getElementById('search-form');
 const searchInput = document.getElementById('search-input');
 
-searchForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const query = encodeURIComponent(searchInput.value);
-    const selectedEngine = document.querySelector('input[name="engine"]:checked').value;
-    
-    if (query) {
-        // Special case for Google/Bing which use ?q=
-        // Most AI URLs also follow this pattern in the updated HTML
-        window.location.href = selectedEngine + query;
+// 1. Listen for the key combination
+searchInput.addEventListener('keydown', (e) => {
+    // Check for Shift + Enter
+    if (e.key === 'Enter' && e.shiftKey) {
+        e.preventDefault(); // Prevent the default new line
+        searchForm.requestSubmit(); // Triggers the 'submit' event listener below
     }
 });
 
