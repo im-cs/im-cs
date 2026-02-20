@@ -13,7 +13,7 @@ async function loadBookmarks() {
         const response = await fetch('bookmarks.json');
         if (!response.ok) throw new Error('Could not fetch bookmarks');
         const bookmarksData = await response.json();
-        
+
         list.innerHTML = bookmarksData.map(link => `
             <a href="${link.url}" target="_blank" class="card">${link.name}</a>
         `).join('');
@@ -35,7 +35,10 @@ searchInput.addEventListener('keydown', (e) => {
     // Check for Shift + Enter
     if (e.key === 'Enter' && e.shiftKey) {
         e.preventDefault(); // Prevent the default new line
-        searchForm.requestSubmit(); // Triggers the 'submit' event listener below
+
+        const query = encodeURIComponent(searchInput.value);
+        const selectedEngine = document.querySelector('input[name="engine"]:checked').value;
+        window.location.href = selectedEngine + query;
     }
 });
 
@@ -62,11 +65,11 @@ async function testSpeed() {
     speedText.textContent = "Testing...";
     retestBtn.disabled = true;
     drawGauge(0);
-    
+
     // Using a 25MB request to allow the connection to reach "peak" speed
-    const testFile = "https://speed.cloudflare.com/__down?bytes=25000000"; 
+    const testFile = "https://speed.cloudflare.com/__down?bytes=25000000";
     const startTime = performance.now();
-    
+
     try {
         const response = await fetch(testFile, { cache: "no-store" });
         if (!response.ok) throw new Error();
@@ -74,11 +77,11 @@ async function testSpeed() {
         const reader = response.body.getReader();
         let received = 0;
 
-        while(true) {
-            const {done, value} = await reader.read();
+        while (true) {
+            const { done, value } = await reader.read();
             if (done) break;
             received += value.length;
-            
+
             // Real-time gauge updates during the download
             const currentTime = performance.now();
             const elapsed = (currentTime - startTime) / 1000;
@@ -91,10 +94,10 @@ async function testSpeed() {
 
         const endTime = performance.now();
         const duration = (endTime - startTime) / 1000;
-        
+
         // Final Calculation (Total bits / Total seconds)
         const finalMbps = ((received * 8) / (duration * 1024 * 1024)).toFixed(1);
-        
+
         speedText.textContent = `${finalMbps} Mbps`;
         drawGauge(finalMbps);
 
